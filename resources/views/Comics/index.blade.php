@@ -2,8 +2,13 @@
 
 @section('content')
 <div class="container">
+    <div class="row">
+        <div class="col-auto ms-auto">
+            Nuovo comic
+            <a class="btn btn-primary mx-5" href="{{ route('comics.create') }}">Aggiungi</a>
+        </div>
+    </div>
     <table>
-        <tr>
             <th>Cover</th>
             <th>Titolo</th>
             <th>Prezzo</th>
@@ -24,7 +29,7 @@
             <td>{{$comic->description}}</td>
             <td>{{$comic->sale_date}}</td>
             <td>
-                 <a class="btn btn-primary mx-5" href="{{ route('comics.create') }}">Aggiungi</a>
+                <a class="btn btn-primary mx-5" href="{{ route('comics.edit', $comic) }}">Modifica</a>
             </td>
         </tr>
         @endforeach
