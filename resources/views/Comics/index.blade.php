@@ -3,12 +3,13 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-auto ms-auto">
+        <div class="col-auto ms-auto text-primary my-5">
             Nuovo comic
             <a class="btn btn-primary mx-5" href="{{ route('comics.create') }}">Aggiungi</a>
         </div>
     </div>
     <table>
+        <tr>
             <th>Cover</th>
             <th>Titolo</th>
             <th>Prezzo</th>
@@ -30,6 +31,13 @@
             <td>{{$comic->sale_date}}</td>
             <td>
                 <a class="btn btn-primary mx-5" href="{{ route('comics.edit', $comic) }}">Modifica</a>
+            </td>
+            <td>
+                <form action="{{ route('comics.destroy', $comic) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <input type="submit" class="btn btn-danger" value="Delete">
+                </form>
             </td>
         </tr>
         @endforeach

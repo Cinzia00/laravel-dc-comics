@@ -7,7 +7,6 @@
     <form action="{{ route('comics.update', $comic) }}" method="POST">
         @csrf
         @method('PUT')
-
         <div class="mb-3">
             <label for="thumb" class="form-label">Cover</label>
             <input type="text" class="form-control" id="thumb" name="thumb" value="{{ $comic->thumb }}">
