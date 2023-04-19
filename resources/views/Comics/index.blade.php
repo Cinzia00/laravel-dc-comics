@@ -21,7 +21,7 @@
         @foreach($comics as $comic)
         <tr>
             <td>
-                <img src="{{ $comic->thumb }}" alt="" height="100">
+                <img src="{{ $comic->thumb }}" alt="" height="120" width="100">
             </td>
             <td>{{$comic->title}}</td>
             <td>€ {{$comic->price}}</td>

@@ -67,18 +67,19 @@ class ComicController extends Controller
             'type' => 'required', Rule::in (['avventura', 'fantascienza'])
         ]);
 
-        $new_comic = new Comic();
-        $new_comic->title = $data['title'];
-        $new_comic->description = $data['description'];
-        $new_comic->thumb = $data['thumb'];
-        $new_comic->price = $data['price'];
-        $new_comic->series = $data['series'];
-        $new_comic->sale_date = $data['sale_date'];
-        $new_comic->type = $data['type'];
+        // $new_comic = new Comic();
+        // $new_comic->title = $data['title'];
+        // $new_comic->description = $data['description'];
+        // $new_comic->thumb = $data['thumb'];
+        // $new_comic->price = $data['price'];
+        // $new_comic->series = $data['series'];
+        // $new_comic->sale_date = $data['sale_date'];
+        // $new_comic->type = $data['type'];
 
-        $new_comic->save();
+        // $new_comic->save();
+        $new_comic = Comic::create($data);
 
-        return to_route('comics.show', $new_comic);
+        return to_route('comics.index', $new_comic);
     }
 
 
@@ -106,24 +107,25 @@ class ComicController extends Controller
         $data = $request-> validate([
             'title' => 'required|max:255',
             'description' => 'string',
-            'thumb' => 'required|max:255|url',
+            'thumb' => 'required|url',
             'price' => 'required|max:255',
             'series' => 'required|max:255',
             'sale_date' => 'required|max:255',
             'type' => 'required', Rule::in (['avventura', 'fantascienza'])
         ]);
 
-        $comic->title = $data['title'];
-        $comic->description = $data['description'];
-        $comic->thumb = $data['thumb'];
-        $comic->price = $data['price'];
-        $comic->series = $data['series'];
-        $comic->sale_date = $data['sale_date'];
-        $comic->type = $data['type'];
+        // $comic->title = $data['title'];
+        // $comic->description = $data['description'];
+        // $comic->thumb = $data['thumb'];
+        // $comic->price = $data['price'];
+        // $comic->series = $data['series'];
+        // $comic->sale_date = $data['sale_date'];
+        // $comic->type = $data['type'];
 
-        $comic->save();
+        // $comic->save();
+        $comic->update($data);
 
-        return to_route('comics.show', $comic);
+        return to_route('comics.index', $comic);
     }
 
     /**
