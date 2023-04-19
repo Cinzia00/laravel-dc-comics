@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Comic;
+use Illuminate\Validation\Rule;
 
 class ComicController extends Controller
 {
@@ -55,7 +56,16 @@ class ComicController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
+        // $data = $request->all();
+        $data = $request-> validate([
+            'title' => 'required|max:255',
+            'description' => 'required|max:255',
+            'thumb' => 'required|max:255|url',
+            'price' => 'required|max:255',
+            'series' => 'required|max:255',
+            'sale_date' => 'required|max:255',
+            'type' => 'required', Rule::in (['avventura', 'fantascienza'])
+        ]);
 
         $new_comic = new Comic();
         $new_comic->title = $data['title'];
@@ -92,7 +102,16 @@ class ComicController extends Controller
      */
     public function update(Request $request, Comic $comic)
     {
-        $data = $request->all();
+        // $data = $request->all();
+        $data = $request-> validate([
+            'title' => 'required|max:255',
+            'description' => 'string',
+            'thumb' => 'required|max:255|url',
+            'price' => 'required|max:255',
+            'series' => 'required|max:255',
+            'sale_date' => 'required|max:255',
+            'type' => 'required', Rule::in (['avventura', 'fantascienza'])
+        ]);
 
         $comic->title = $data['title'];
         $comic->description = $data['description'];
@@ -105,7 +124,6 @@ class ComicController extends Controller
         $comic->save();
 
         return to_route('comics.show', $comic);
-
     }
 
     /**
